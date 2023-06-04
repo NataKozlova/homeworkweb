@@ -1,15 +1,16 @@
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 class CallbackTest {
-    private ChromeDriver driver;
+    WebDriver driver;
 
     @BeforeAll
     static void setUp() {
-        System.setProperty("webdriver.chrome.driver",
-                "C:\\Users\\endry\\Downloads\\chromedriver_win32\\chromedriver.exe");
+        WebDriverManager.chromedriver().setup();
     }
 
     @BeforeEach
@@ -28,7 +29,7 @@ class CallbackTest {
     }
 
     @Test
-    void shouldTestSomething() {
+    void shouldTestSuccess() {
         driver.get("http://localhost:7777/");
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иванов Иван");
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79081234565");
